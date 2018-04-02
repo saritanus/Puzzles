@@ -37,27 +37,40 @@ public class BuyingShowTickets {
 	 * @return
 	 */
 	
-	static long waitingTime(int[] tickets, int p) {
-		long total = 0;
-		if(tickets.length>0 && p>=0)
-		{
-			int queueLenghth = tickets.length;
-			int required_tickets =tickets[p] ;
-			
-			//Checks if the no of tickets is greater then one then calculates the waiting time
-			if(required_tickets>1)
-			{
-				while(required_tickets>1)
-				{
-				total= total+queueLenghth;
-				required_tickets--;
-				}
-			}
-			else
-			//If no of tickets equals to 1, then it calculates the waiting time			
-			total = required_tickets+p;
-		}
-		return total;
+	static long waitingTime(int[] tickets, int p) {		
+		
+        int ticketProcessed = 0;
+        int numberOfParticipants = tickets.length;
+        long noOfloops = 0;
+        
+        //Checks if the position exists in the line
+        if(numberOfParticipants > p)
+        {
+        	//Process tickets if the no of tickets at a given point is more than 0
+            while(tickets[p] > 0)
+            {
+                if(tickets[ticketProcessed] != 0)
+                {
+                    // ticket being processed got one ticket
+                    tickets[ticketProcessed] = tickets[ticketProcessed] -1;
+                    // if we have reached the end of the line
+                    if(ticketProcessed == numberOfParticipants -1)
+                    	ticketProcessed = 0;
+                    else
+                    	ticketProcessed ++;
+                    noOfloops ++;
+                }
+                else {
+                    if (ticketProcessed == numberOfParticipants - 1)
+                    	ticketProcessed = 0;
+                    else
+                    	ticketProcessed++;
+                }
+               
+            }
+        }
+        return noOfloops;
+
 	}
 
 }
