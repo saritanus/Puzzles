@@ -49,27 +49,31 @@ public class TwoCircles {
 					int Yb = Integer.parseInt(circles[4]);
 					int Rb = Integer.parseInt(circles[5]);				
 				      
-				    double distance = Math.pow((Xa - Xb) * (Xa - Xb) + (Ya - Yb) * (Ya - Yb), 0.5);
+				    double distanceSquare = (Xa - Xb) * (Xa - Xb) + (Ya - Yb) * (Ya - Yb);				    
+				    double radiusSumSquare = (Ra +Rb)*(Ra +Rb);
+				    double radiusSubSquare = (Ra -Rb)*(Ra -Rb);
 				    
+				    //If coordinates are same, its concentric which means both have same centre point
 				    if((Xa==Xb) && (Ya==Yb))
 				    {
 				    	result[i] = "Concentric";
 				    }
-				    else if ((Rb >= Ra && distance <= (Rb - Ra))||(Ra >= Rb && distance <= (Ra - Rb)))
+				    else if(distanceSquare == radiusSumSquare || distanceSquare ==radiusSubSquare)
 				    {
-				    		result[i] = "Touching";
+				    	result[i] = "Touching";
 				    }
-				    else if (distance > (Ra + Rb))
+				    else if (distanceSquare<radiusSumSquare && distanceSquare>radiusSubSquare)
+				    {				    	
+				    	result[i] = "Intersecting";
+				    }
+				    else if (distanceSquare > radiusSumSquare)
 				    {
 				        result[i] = "Disjoint Outside";
 				    }
-				    else if(distance < (Ra + Rb))
+				    else if (distanceSquare<radiusSubSquare)
 				    {
-				    	result[i] = "Intersecting";
-				    }
-				    else 
-				    {
-				    	 result[i] = "Disjoint Inside";
+				    	result[i] = "Disjoint Inside";
+				    	
 				    }			   
 				  
 			}
