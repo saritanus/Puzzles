@@ -10,21 +10,23 @@ public class BalancedOrNot {
 
 	public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int t = in.nextInt();
-        String[] expr  = new String[t];
-        int[] replacements  = new int[t];
+        int size = in.nextInt();
         
-        for(int a0 = 0; a0 < t; a0++){
+        String[] expressions  = new String[size];
+               
+        for(int i = 0; i < size; i++){
             String s = in.next();
-            expr[a0] = s;
+            expressions[i] = s;
         }
         
-        for(int a0 = 0; a0 < t; a0++){
+        int sizeMaxReplacements = in.nextInt();
+        int[] replacements  = new int[sizeMaxReplacements];        
+        for(int j = 0; j < sizeMaxReplacements; j++){
             int no = in.nextInt();
-            replacements[a0] = no;
-        } 
+            replacements[j] = no;  }       
        
-		int[] result = balancedOrNot(expr,replacements);
+
+		int[] result = balancedOrNot(expressions,replacements);
 		for(int i=0;i<result.length;i++)
 			System.out.print(result[i] + " ");             
         
@@ -63,6 +65,7 @@ public class BalancedOrNot {
 		Stack<Character> brackets = new Stack<>();
 		boolean check = true;
 		
+		
 			for(int index=0;index<expression.length();index++)
 			{		
 				Character current = expression.charAt(index);
@@ -82,22 +85,22 @@ public class BalancedOrNot {
 				check= true;
 			else
 			{
-				//count no of closed bracket and compare with maximum replacements
-			    int count_closed = 0;
-			    int count_open = 0;
-		        while (!brackets.empty())
-		        { 	        
-		        	if(brackets.pop()=='<')
-		        		count_open++;
-		        	else
-		        		count_closed++;
-		            
-		        }
-		        //Check with maximum replacements for the string to become balanced
-				if(maxReplacement>=count_closed && count_open<=maxReplacement)
-					check=true;
-				else
-					check= false;
+				  for (int rCount = 0; rCount < maxReplacement; rCount++) 
+				  {
+                    if (!brackets.isEmpty()) 
+                    {
+                        char stackChar = brackets.peek();
+                        if (stackChar == '>') {
+                        	brackets.pop();
+                        }
+                    }
+
+				  }
+
+                if (brackets.isEmpty())
+                    check = true;
+                else
+                    check = false;
 			}
 				
 			

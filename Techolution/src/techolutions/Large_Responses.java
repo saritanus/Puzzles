@@ -1,6 +1,3 @@
-/**
- * 
- */
 package techolutions;
 
 import java.io.BufferedWriter;

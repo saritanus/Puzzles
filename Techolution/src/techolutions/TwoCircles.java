@@ -10,21 +10,24 @@ public class TwoCircles {
 	
 	public static void main(String args[])
 	{
-		Scanner sc = new Scanner(System.in);
-		int no_inputs = sc.nextInt();
-		String[] circles = new String[no_inputs];
-		sc.nextLine();
-		for(int i=0;i<no_inputs;i++)
-		{
-			String line = sc.nextLine();
-			circles[i] = line;			
-		}
+		Scanner scanner = new Scanner(System.in);
+        int size = Integer.parseInt(scanner.nextLine());
+        
+        String[] circles = new String[size];
+
+        for (int i = 0; i < size; i++) {
+
+            circles[i] = scanner.nextLine();
+
+        }
+
+        String[] results = circles(circles);
+        for (int i = 0; i < results.length; i++) {
+            String s = results[i];
+            System.out.println(s);
+        }
 		
-		String[] results = circles(circles);
-		for(String result:results)
-		{
-			System.out.println(result);
-		}
+		
 	}
 	/***
 	 * Finds the relationship between circles
@@ -68,11 +71,11 @@ public class TwoCircles {
 				    }
 				    else if (distanceSquare > radiusSumSquare)
 				    {
-				        result[i] = "Disjoint Outside";
+				        result[i] = "Disjoint‐Outside";
 				    }
 				    else if (distanceSquare<radiusSubSquare)
 				    {
-				    	result[i] = "Disjoint Inside";
+				    	result[i] = "Disjoint‐Inside";
 				    	
 				    }			   
 				  

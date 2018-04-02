@@ -6,7 +6,7 @@ import java.util.Scanner;
  * @author Sarita Sethy
  *
  */
-public class FindtheWinner {
+public class FindTheWinner  {
 	
 	public static void main(String args[])
 	{
@@ -49,29 +49,20 @@ public class FindtheWinner {
 		int length = Math.min(andrea.length, maria.length);
 		int andrea_total=0;
 		int maria_total=0;
+		int index =0;
 		
-		//Even game logic
-		if(s.equals("Even"))
-		{
-			int index =0;
-			while(index<length)
-			{
-				andrea_total = andrea_total + (andrea[index]-maria[index]);
-				maria_total = maria_total + (maria[index]-andrea[index]);
-				index=index+2;
-			}			
-		}
 		//Odd Game logic
-		else if(s.equals("Odd"))
+		if("Odd".equalsIgnoreCase(s))
 		{
-			int index =1;
-			while(index<length)
-			{
-				andrea_total = andrea_total + (andrea[index]-maria[index]);
-				maria_total = maria_total + (maria[index]-andrea[index]);
-				index=index+2;
-			}			
+			index =1;					
 		}
+		
+		while(index<length)
+		{
+			andrea_total = andrea_total + (andrea[index]-maria[index]);
+			maria_total = maria_total + (maria[index]-andrea[index]);
+			index=index+2;
+		}	
 		
 		//Finds the winner
 		if(andrea_total>maria_total)

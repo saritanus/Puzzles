@@ -34,6 +34,9 @@ public class InTheFuture {
 		int k_total = 0;
 		int min_no_days =0;
 		
+		 if (P == 0 && A >= K)
+	            return -1;
+		
 		//calculates minimum no of days.
 		while(k_total<=a_total)
 		{
