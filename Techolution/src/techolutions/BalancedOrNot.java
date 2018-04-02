@@ -10,7 +10,6 @@ public class BalancedOrNot {
 
 	public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        System.out.println("Please enter no of expression");
         int t = in.nextInt();
         String[] expr  = new String[t];
         int[] replacements  = new int[t];
@@ -19,7 +18,6 @@ public class BalancedOrNot {
             String s = in.next();
             expr[a0] = s;
         }
-        System.out.println("Please enter maximum replacements");
         
         for(int a0 = 0; a0 < t; a0++){
             int no = in.nextInt();
@@ -46,9 +44,10 @@ public class BalancedOrNot {
 		for(int i=0;i<expressions.length;i++)
 		{
 			if(isBalanced(expressions[i],maxReplacements[i]))
-				result[i]=1;
+					result[i]=1;
 			else
-				result[i]=0;
+					result[i]=0;
+			
 		}
 		return result;
     }
@@ -63,8 +62,6 @@ public class BalancedOrNot {
 	{
 		Stack<Character> brackets = new Stack<>();
 		boolean check = true;
-		
-		//Checks if the string starts with ">", its not balanced
 		
 			for(int index=0;index<expression.length();index++)
 			{		
